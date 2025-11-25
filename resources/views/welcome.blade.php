@@ -21,7 +21,7 @@
                             Enzim</span>
                     </h1>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Bersama RDEE Medan ubah sampah menjadi berkah untuk Bumi
+                        Bersama RDEE Medan Deli Serdang ubah sampah menjadi berkah untuk Bumi
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                         <a href="{{ route('produk.index') }}"

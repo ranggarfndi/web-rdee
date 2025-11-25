@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Forms\Set;    
 
 class PostResource extends Resource
 {
@@ -20,16 +22,19 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                // Input Judul
+                // 1. Input Judul (Dengan Logic Otomatis)
                 Forms\Components\TextInput::make('title')
                     ->label('Judul Berita')
                     ->required()
-                    ->maxLength(255),
-                
-                // Input Slug
+                    ->maxLength(255)
+                    ->live(onBlur: true) // Mendeteksi saat selesai ketik
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))), // Ubah slug otomatis
+
+                // 2. Input Slug (Otomatis Terisi)
                 Forms\Components\TextInput::make('slug')
-                    ->label('Slug URL')
+                    ->label('Slug URL (Otomatis)')
                     ->required()
+                    ->readOnly() // Admin tidak perlu ketik manual
                     ->maxLength(255),
 
                 // Input Gambar
